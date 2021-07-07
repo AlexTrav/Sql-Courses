@@ -1,3 +1,5 @@
+-- ddl; create, alter, drop
+
 drop database if exists vk;
 create database vk;
 use vk;
@@ -53,7 +55,7 @@ create table friend_request(
   initiator_user_id bigint unsigned not null,
 	target_user_id bigint unsigned not null,
 	-- status tinyint(1) unsigned, -- 1,2,3,4,5,6,7,99
-	status enum('Approved', 'Requested', 'Declined', 'Unfriended'), -- Ïåğå÷èñëåíèå
+	status enum('Approved', 'Requested', 'Declined', 'Unfriended'), -- ĞŸĞµÑ€ĞµÑ‡Ğ¸ÑĞ»ĞµĞ½Ğ¸Ğµ
 	requested_at datetime default now(),
 	updated_at datetime on update now(),
 	
@@ -64,21 +66,78 @@ create table friend_request(
 
 drop table if exists communities;
 create table communities(
-	id serail primary key,
-	name varchar(200)
+	id serial primary key,
+	name varchar(200),
 	admin_user_id bigint unsigned not null,
 	
 	index(name),
 	foreign key (admin_user_id) references users(id)	
 );
 
+drop table if exists users_communities;
+create table users_communities(
+	user_id bigint unsigned not null,
+	community_id bigint unsigned not null,
+	
+	primary key (user_id, community_id),
+	foreign key (user_id) references users(id),
+	foreign key (community_id) references communities(id)
+);
 
+drop table if exists media_types;
+create table media_types(
+	id serial primary key,
+	name varchar(255)
+);
 
+drop table if exists media;
+create table media(
+	id serial primary key,
+	user_id bigint unsigned not null,
+	media_type_id bigint unsigned not null,
+	body text,
+	filename varchar(255),  -- blob, 	
+	`size` int,
+	metadata json, 
+	created_at datetime default now(),
+	updated_at datetime on update now(),
 
+  foreign key (user_id) references users(id),
+  foreign key (media_type_id) references media_types(id)
+);
 
+drop table if exists likes;
+create table likes(
+  id serial primary key,
+  user_id bigint unsigned not null, 
+  media_id bigint unsigned not null,
+  created_at datetime default now(),
+  	
+  foreign key (media_id) references media(id),
+	foreign key (user_id) references users(id)  
+);
 
+drop table if exists photo_albums;
+create table photo_albums(
+	id serial,
+	name varchar(255),
+  user_id bigint unsigned not null,
+  
+  primary key(id),
+	foreign key (user_id) references users(id)  
+);
 
-
-
+drop table if exists photos;
+create table photos(
+	id serial primary key,
+	name varchar(255),
+	album_id bigint unsigned null,
+  -- user_id bigint unsigned not null,
+  media_id bigint unsigned not null,
+  
+	foreign key (album_id) references photo_albums(id),   
+	foreign key (media_id) references media(id)    	
+	-- foreign key (user_id) references users(id)  
+);
 
 
