@@ -77,9 +77,9 @@ create table communities(
 drop table if exists users_communities;
 create table users_communities(
 	user_id bigint unsigned not null,
-	community_id bigint unsigned not null,
 	
 	primary key (user_id, community_id),
+	community_id bigint unsigned not null,
 	foreign key (user_id) references users(id),
 	foreign key (community_id) references communities(id)
 );
@@ -112,6 +112,7 @@ create table likes(
   user_id bigint unsigned not null, 
   media_id bigint unsigned not null,
   created_at datetime default now(),
+	status enum('Worth', 'Not_worth'), -- Перечисление  
   	
   foreign key (media_id) references media(id),
 	foreign key (user_id) references users(id)  
@@ -140,4 +141,57 @@ create table photos(
 	-- foreign key (user_id) references users(id)  
 );
 
+drop table if exists photos;
+create table photos(
+	id serial primary key,
+	name varchar(255),
+	album_id bigint unsigned null,
+  -- user_id bigint unsigned not null,
+  media_id bigint unsigned not null,
+  
+	foreign key (album_id) references photo_albums(id),   
+	foreign key (media_id) references media(id)    	
+	-- foreign key (user_id) references users(id)  
+);
 
+drop table if exists news_item;
+create table news_item(
+	id serial primary key,
+	community_id bigint unsigned not null,
+	media_id bigint unsigned not null,
+	
+	foreign key (community_id) references communities(id),   
+	foreign key (media_id) references media(id)    	
+);
+
+drop table if exists news;
+create table news(
+	id serial primary key,
+	community_id bigint unsigned not null,
+	news_id bigint unsigned not null,  
+  created_at datetime default now(),
+  like_id bigint unsigned not null,
+  
+	foreign key (community_id) references communities(id),    	
+	foreign key (news_id) references news_item(id),   
+	foreign key (like_id) references likes(id)   
+);
+
+drop table if exists document_types;
+create table document_types(
+	id serial primary key,
+	name varchar(100)	
+);
+
+drop table if exists documents;
+create table documents(
+	id serial primary key,
+	type_id bigint unsigned not null,
+	user_id bigint unsigned not null,
+	name varchar(100) unique,
+  created_at datetime default now(),
+	file json,	
+	
+	foreign key (user_id) references users(id),   
+	foreign key (type_id) references document_types(id)   
+);
