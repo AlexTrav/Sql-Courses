@@ -95,12 +95,16 @@ values
 select *
 from friend_request;
 
+-- 3 v
+
 update friend_request set
 	initiator_user_id = 1
 where	initiator_user_id = 11;
  
 select *
 from friend_request;
+
+-- 4 v
 
 update friend_request set
 	status = 'Declined'
@@ -109,14 +113,46 @@ where	initiator_user_id = 1 and target_user_id = 12;
 select *
 from friend_request;
 
- 
+-- DELETE
 
+-- 1 v
 
+delete from users 
+where id = 14; 
 
+select *
+from users; 
 
+-- 2 v
 
+insert into messages(from_user_id, to_user_id, message) 
+values
+('1', '3', 'Привет, как дела?'),
+('3', '1', 'Привет, отлично, у тебя как?'),
+('1', '3', 'У меня супер?'),
+('1', '7', 'Йо бро, как ты?'),
+('7', '1', 'Йо, супер'),
+('8', '9', 'Петр?'),
+('9', '8', 'ДА');
 
+select *
+from messages;
 
+delete from messages 
+where from_user_id = 1 and to_user_id = 3; 
+
+select *
+from messages;
+
+-- 3 v
+
+delete from messages;
+
+-- TRANCUTE -- сбрасывает autoincrement -- truncate = drop + create,  
+
+-- 1 v 
+
+truncate messages;
 
 
 
