@@ -78,7 +78,36 @@ select *
 from users
 where phone > 9000000000;
 
+-- UPDATE
 
+-- 1 v
+
+update users set
+	firstname = 'ЛОСЬ'
+where id < 5;
+
+-- 2 v
+
+insert into friend_request(initiator_user_id, target_user_id)
+values
+('1', '15');
+
+select *
+from friend_request;
+
+update friend_request set
+	initiator_user_id = 1
+where	initiator_user_id = 11;
+ 
+select *
+from friend_request;
+
+update friend_request set
+	status = 'Declined'
+where	initiator_user_id = 1 and target_user_id = 12;
+ 
+select *
+from friend_request;
 
  
 
