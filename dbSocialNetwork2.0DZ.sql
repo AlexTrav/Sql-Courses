@@ -1,3 +1,5 @@
+-- I
+
 insert into users (firstname, lastname, email) 
 values
 ('Petr', 'Zod', 'zod1@mail.ru'),
@@ -118,18 +120,18 @@ values
 ('И не только подруги', '1', '10'), ('Подруги', '2', '7'),
 ('Кто то там еще', '7', '6'), ('Что?', '8', '8');
 
-insert into profiles(user_id, sex, birthday, photo_id, hometown)
+insert into profiles(user_id, sex, birthday, photo_id, hometown, age)
 values
-('1', 'm', '12.12.2000', '1', 'A'),
-('2', 'm', '12.11.2000', '2', 'B'),
-('3', 'm', '12.10.2000', '3', 'C'),
-('4', 'm', '12.09.2000', '4', 'F'),
-('5', 'm', '12.08.2000', '5', 'G'),
-('6', 'm', '12.07.2000', '6', 'H'),
-('7', 'm', '12.06.2000', '7', 'J'),
-('8', 'm', '12.05.2000', '8', 'K'),
-('9', 'm', '12.04.2000', '9', 'L'),
-('10', 'm', '12.03.2000', '10', 'M');
+('1', 'm', '12.12.2000', '1', 'A', '18'),
+('2', 'm', '12.11.2000', '2', 'B', '22'),
+('3', 'm', '12.10.2000', '3', 'C', '14'),
+('4', 'm', '12.09.2000', '4', 'F', '6'),
+('5', 'm', '12.08.2000', '5', 'G', '7'),
+('6', 'm', '12.07.2000', '6', 'H', '30'),
+('7', 'm', '12.06.2000', '7', 'J', '45'),
+('8', 'm', '12.05.2000', '8', 'K', '12'),
+('9', 'm', '12.04.2000', '9', 'L', '30'),
+('10', 'm', '12.03.2000', '10', 'M', '25');
 
 insert into users_communities(user_id, community_id)
 values
@@ -138,6 +140,32 @@ values
 ('7', '7'), ('8', '8'), ('10', '9'), 
 ('11', '10'), ('11', '1'), ('10', '2');
 
+--  II
+
+select firstname
+from users 
+order by firstname;
+
+-- III
+
+alter table profiles add age double;
+alter table profiles add is_active bit default 1;
+
+update profiles set
+is_active = 0
+where age < 18;
+
+-- IV
+
+delete from messages 
+where created_at < now();
+
+-- V
+
+/*
+Тема курсового проекта
+"Магазин продуктов"
+*/
 
 
 
