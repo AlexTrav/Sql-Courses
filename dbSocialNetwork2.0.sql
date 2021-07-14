@@ -167,14 +167,10 @@ create table news_item(
 drop table if exists news;
 create table news(
 	id serial primary key,
-	community_id bigint unsigned not null,
 	news_item_id bigint unsigned not null,
-  like_id bigint unsigned not null,
   created_at datetime default now(),
   
-	foreign key (community_id) references communities(id),    	
-	foreign key (news_item_id) references news_item(id),    	
-	foreign key (like_id) references likes(id)   
+	foreign key (news_item_id) references news_item(id)    	
 );
 
 drop table if exists document_types;

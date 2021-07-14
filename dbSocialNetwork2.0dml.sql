@@ -2,16 +2,33 @@
 
 -- 1 v
 
-insert into users (firstname, lastname, email, phone, is_deleted)
-values ('Dean', 'Satterfield', 'orion152@example.org', '9160120629', default);
+insert into users (firstname, lastname, email, phone)
+values ('Dean', 'Satterfield', 'orion152@example.org', '9160120629');
 
 -- 2 v
 
 insert into users (firstname, lastname, email) 
 values
-('Petr', 'Zod', 'zod222@mail.ru'),
-('Alex', 'Mod', 'mod228@mail.ru'),
-('Vic', 'Rod', 'rod420@mail.ru');
+('Petr', 'Zod', 'zod1@mail.ru'),
+('Alex', 'Mod', 'mod2@mail.ru'),
+('Vic', 'Rod', 'rod3@mail.ru'),
+('Petr', 'Zod', 'zod4@mail.ru'),
+('Alex', 'Mod', 'mod5@mail.ru'),
+('Vic', 'Rod', 'rod6@mail.ru'),
+('Petr', 'Zod', 'zod7@mail.ru'),
+('Alex', 'Mod', 'mod8@mail.ru'),
+('Vic', 'Rod', 'rod49@mail.ru'),
+('Alex', 'Mod', 'mod105@mail.ru'),
+('Vic', 'Rod', 'rod11@mail.ru'),
+('Petr', 'Zod', 'zod12@mail.ru'),
+('Alex', 'Mod', 'mod13@mail.ru'),
+('Vic', 'Rod', 'rod14@mail.ru'),
+('Alex', 'Mod', 'mod15@mail.ru'),
+('Vic', 'Rod', 'rod16@mail.ru'),
+('Petr', 'Zod', 'zod17@mail.ru'),
+('Alex', 'Mod', 'mod18@mail.ru'),
+('Vic', 'Rod', 'rod19@mail.ru');
+
 
 -- 3 v
 
@@ -45,7 +62,7 @@ where first_name = 'adsdasd';
 
 -- 1 v
 
-select *
+/* select *
 from users
 where id > 10;
 
@@ -76,7 +93,7 @@ where phone is not null -- null;
 
 select *
 from users
-where phone > 9000000000;
+where phone > 9000000000; */
 
 -- UPDATE
 
@@ -133,6 +150,9 @@ values
 ('1', '7', 'Йо бро, как ты?'),
 ('7', '1', 'Йо, супер'),
 ('8', '9', 'Петр?'),
+('9', '8', 'ДА'),
+('7', '1', 'Йо, супер'),
+('8', '9', 'Петр?'),
 ('9', '8', 'ДА');
 
 select *
@@ -152,7 +172,7 @@ delete from messages;
 
 -- 1 v 
 
-truncate messages;
+-- truncate messages;
 
 
 
