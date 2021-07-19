@@ -148,7 +148,7 @@ order by firstname;
 
 -- III
 
-alter table profiles add age double;
+-- alter table profiles add age double;
 alter table profiles add is_active bit default 1;
 
 update profiles set
