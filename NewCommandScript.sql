@@ -56,4 +56,39 @@ select 2 <=> null, null <=> null;
 select 2 is null, 2 is not null, null is null, null is not null;
 
 insert into communities(name, admin_user_id) 
-values ('null', 'null');
+values (null, '1');
+
+select * from communities 
+where name is null;
+
+select * from communities 
+where name is not null;
+
+
+-- Логическое "и" (and) и "или" (or)
+
+select true and true, true and false, false and true, false and false;
+
+select true or true, true or false, false or true, false or false;
+
+	-- Таблица
+	
+	drop table if exists tbl;
+	create table tbl(
+		x int,
+		y int,
+		sum int as (x + y) stored
+	);
+
+	insert into tbl(x, y)
+	values
+	('1', '3'), ('3', '3'), ('4', '6'),
+	('14', '3'), ('14', '2'), ('8', '7'),
+	('12', '5'), ('33', '6'), ('99', '1');
+
+	select * 
+	from tbl;
+
+	drop table tbl;
+	
+	
