@@ -32,5 +32,28 @@ select 100 / 0;
 
 select 5 % 2; -- 5 - 2 * 2
 
+
 -- Операторы сравнения
 
+select 2 > 3;
+
+select 3 > 1;
+
+select 2 = 2;
+
+select 2 = 3;
+
+select not true, not false;
+
+select ! true, ! false;
+
+select 2 != 3 , 2 <> 3;
+
+select not 2 != 3 , not 2 <> 3;
+
+select 2 <=> null, null <=> null;
+
+select 2 is null, 2 is not null, null is null, null is not null;
+
+insert into communities(name, admin_user_id) 
+values ('null', 'null');
