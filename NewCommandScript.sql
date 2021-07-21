@@ -190,7 +190,7 @@ where name like 'Политика';
 	where birthday like '199%';
 
 
--- Операторы rlike и regexp
+-- Операторы rlike
 
 select 'грамм' rlike 'грам', 'граммпластинка' rlike 'грам';
 
@@ -225,11 +225,11 @@ select 'грамм' rlike 'грам', 'граммпластинка' rlike 'гр
 
 		select 'Йо' rlike '[[:digit:]]'; 
 	
-		/* -- Класс alfa
+		-- Класс alpha
 
-		select '7' rlike '[[:alfa:]]'; 
+		select '7' rlike '[[:alpha:]]'; 
 
-		select 'Йо' rlike '[[:alfa:]]'; */
+		select 'Йо' rlike '[[:alpha:]]'; 
 	
 -- Квантификаторы
 	
