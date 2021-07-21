@@ -90,5 +90,59 @@ select true or true, true or false, false or true, false or false;
 	from tbl;
 
 	drop table tbl;
+
+
+-- Условная выборка
+
+-- Операторы, фильтрация, сортировка и ограничение
+
+-- Оператор between
+
+select * 
+from communities
+where id > 2;
+
+select * 
+from communities
+where id > 2 and id <= 10;
+
+select 2 between 2 and 4; 
+
+select 20 between 2 and 4; 
+
+select * 
+from communities
+where id between 2 and 10;
+
+select * 
+from communities
+where id not between 2 and 10;
+
+-- Оператор in
+
+select *
+from communities where id in (1, 2, 5);
+
+select 2 in (3, 4, 5);
+
+select 2 in (2, 3, 4, 5);
+
+select 2 in (null, 4, 5);
+
+select *
+from communities where id not in (1, 2, 5);
+
+select 2 not in (3, 4 ,5)
+
+-- Оператор like
+
+select *
+from communities 
+where name = 'Политика';
+
+
+
+
+
 	
 	
