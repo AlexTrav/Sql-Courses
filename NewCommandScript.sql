@@ -240,5 +240,41 @@ select '1' rlike '^[0-9]+$' as '1',
 select '342.34' rlike '^[0-9]*\\.[0-9]{2}$' as '342.34';	  
 		
 
+-- Сортировка и ограничение
+
+-- Сортировка
+
+select * 
+from communities;
+
+	-- order by
+
+	select *
+	from communities
+	order by name;
+
+	select *
+	from communities
+	order by name desc;
+	
+	select id, user_id, filename, `size`
+	from media;
+
+	select id, user_id, filename, `size`
+	from media
+	order by user_id, `size`;
+
+	select id, user_id, filename, `size`
+	from media
+	order by user_id desc, `size`;
+
+
+
+
+
+
+
+
+
 
 
