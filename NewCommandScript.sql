@@ -266,9 +266,37 @@ from communities;
 
 	select id, user_id, filename, `size`
 	from media
-	order by user_id desc, `size`;
+	order by user_id desc, `size` desc;
 
+		-- limit
 
+		select id, user_id, filename, `size`
+		from media limit 2;
+	
+		select id, user_id, filename, `size`
+		from media limit 2, 2;
+
+		select id, user_id, filename, `size`
+		from media limit 4, 2;
+		
+		-- или
+
+		select id, user_id, filename, `size`
+		from media limit 4 offset 2;
+
+		-- distinct и all
+	
+		select from_user_id 
+		from messages 
+		order by from_user_id;
+
+		select distinct from_user_id 
+		from messages 
+		order by from_user_id;
+
+		select all from_user_id 
+		from messages 
+		order by from_user_id;
 
 
 
