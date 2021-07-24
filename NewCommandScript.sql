@@ -298,11 +298,21 @@ from communities;
 		from messages 
 		order by from_user_id;
 
+	select id, from_user_id, to_user_id, message
+	from messages;
 
+	select id, from_user_id, to_user_id, message
+	from messages
+	where from_user_id = 2 and to_user_id = 1;
 
+	update messages set
+	message = 'BD'
+	where from_user_id = 2 and to_user_id = 1;
 
-
-
-
-
+	select id, from_user_id, to_user_id, message
+	from messages 
+	order by id desc limit 2;
+	
+	delete from messages
+	order by id desc limit 2;
 
