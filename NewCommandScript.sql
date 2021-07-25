@@ -329,7 +329,7 @@ select * from profiles;
 
 insert into profiles(user_id, sex, birthday, photo_id, hometown, created_at, age)
 values
-('11', 'w', '2000-02-20', '11', 'X', Now(), '21');
+('11', 'w', '2000-02-20', '11', 'X', now(), '21');
 
 select u.firstname, p.created_at
 from users u, profiles p
@@ -347,22 +347,68 @@ date(p.created_at) as created_at
 from users u, profiles p
 where u.id = p.user_id limit 2;
 
+select
+u.id,
+u.firstname,
+p.birthday,
+date(p.created_at) created_at
+from users u, profiles p
+where u.id = p.user_id limit 2;
 
+select date_format('2018-06-12 01:59:59', 'На дворе %Y год'); 
 
+select date_format(now(), 'На дворе %Y год'); 
 
+select u.firstname, date_format(p.birthday, '%d.%m.%Y') as birthday_at 
+from users u, profiles p
+where u.id = p.user_id;
 
+-- Unixstamp
 
+select
+	unix_timestamp('2018-06-12 01:59:59') as `timestamp`,
+	from_unixtime('1528747199') as `datetime`;
+	
+delete from profiles;
 
+insert into profiles(user_id, birthday)
+values
+('1', '1990-10-05'), ('2', '1984-11-12'), ('3', '1985-05-20'),
+('4', '1988-02-14'), ('5', '1998-01-12'), ('6', '2006-08-29');
 
+-- 1 вариант
 
+select 
+	user_id,
+	floor((to_days(now()) - to_days(birthday)) / 365.25) as age
+from profiles;
 
+-- 2 вариант
 
+select user_id, timestampdiff(year, birthday, now()) as age
+from profiles;
 
+-- rand
 
+select * 
+from profiles order by rand();
 
+select * 
+from profiles order by rand() limit 1;
 
+select version();
 
+select last_insert_id(); 
 
+select *
+from media_types;
+
+select *
+from media;
+
+select database();
+
+select user();
 
 
 
