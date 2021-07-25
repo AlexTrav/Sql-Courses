@@ -316,3 +316,61 @@ from communities;
 	delete from messages
 	order by id desc limit 2;
 
+
+-- Предопределенные функции. Ч1
+
+select date('2018-10-10 15:20:00');
+
+select now();
+
+describe profiles;
+
+select * from profiles;
+
+insert into profiles(user_id, sex, birthday, photo_id, hometown, created_at, age)
+values
+('11', 'w', '2000-02-20', '11', 'X', Now(), '21');
+
+select u.firstname, p.created_at
+from users u, profiles p
+where u.id = p.user_id limit 2;
+
+select u.firstname, date(p.created_at)
+from users u, profiles p
+where u.id = p.user_id limit 2;
+
+select
+u.id,
+u.firstname,
+p.birthday,
+date(p.created_at) as created_at
+from users u, profiles p
+where u.id = p.user_id limit 2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
