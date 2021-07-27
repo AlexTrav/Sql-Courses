@@ -413,8 +413,38 @@ select user();
 
 -- Предопределенные функции. Ч2
 
+-- Математические функции
 
+select rand();
 
+	-- Sqrt
+	
+	create table distances (
+		id serial primary key,
+		x1 int not null,
+		y1 int not null,
+		x2 int not null,
+		y2 int not null,
+		distance double as (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)))
+	) 	comment = 'Расстояние между двумя точками';
+		
+	insert into distances(x1, y1, x2, y2)
+	values
+	('1', '1', '4', '5'),
+	('4', '-1', '3', '2'),
+	('-2', '5', '1', '3');
+
+	select *
+	from distances;
+	
+ 	drop table if exists distances;
+ 
+ 	create table distances (
+ 		id serial primary key,
+ 		a json not null,
+ 		b json not null,
+ 		distance double as (sqrt(pow(a->> '$.x' - b->> '$.x', 2) + pow(a->> '$.y' - b->> '$.y', 2)))
+ 	) comment = 'Расстояние между двумя точками'
 
 
 
