@@ -411,6 +411,8 @@ select database();
 select user();
 
 
+-- Предопределенные функции. Ч2
+
 
 
 
