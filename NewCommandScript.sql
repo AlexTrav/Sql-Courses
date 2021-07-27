@@ -444,11 +444,36 @@ select rand();
  		a json not null,
  		b json not null,
  		distance double as (sqrt(pow(a->> '$.x' - b->> '$.x', 2) + pow(a->> '$.y' - b->> '$.y', 2)))
- 	) comment = 'Расстояние между двумя точками'
+ 	) comment = 'Расстояние между двумя точками';
 
+	insert into distances(a, b)
+	values
+	('{"x": 1, "y": 1}', '{"x": 4, "y": 5}'),
+	('{"x": 4, "y": -1}', '{"x": 3, "y": 2}'),
+	('{"x": -2, "y": 5}', '{"x": 1, "y": 3}');
 
+	select *
+	from distances;
 
+	-- radians
 
+	create table triangles (
+		id serial primary key,
+		a double not null,
+		b double not null,
+		angle int not null, 
+		square double as (a * b * sin(radians(angle)) / 2.0)
+	);
 
+	insert into triangles(a, b, angle)
+	values
+	(1.414, 1, 45),
+	(2.707, 2.104, 60),
+	(2.088, 2.112, 56),
+	(5.014, 2.304, 23),
+	(3.482, 4.708, 38);
 
-
+	
+	select *
+	from triangles;
+	
