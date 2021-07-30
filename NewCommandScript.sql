@@ -502,5 +502,16 @@ from users;
 
 -- if
 
-select if(true, 'истина', 'ложь'), if(false, 'истина', 'ложь')
+select if(true, 'истина', 'ложь'), if(false, 'истина', 'ложь');
+
+select
+	firstname,
+	if(
+		timestampdiff(year, birthday_at, now()) >= 18,
+		'совершеннолетний',
+		'несовершеннолетний'
+	) as status
+from
+	users; 
+
 
