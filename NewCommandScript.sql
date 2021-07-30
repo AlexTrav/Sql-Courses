@@ -474,6 +474,33 @@ select rand();
 	(3.482, 4.708, 38);
 
 	
-	select *
-	from triangles;
+select *
+from triangles;
 	
+alter table triangles change square square double as (Round(a * b * sin(radians(angle)) / 2.0, 4));
+
+select round(2.4), round(2.5), round(2.6); -- округление до точки
+
+select ceiling(-2.9), ceiling(-2.1), ceiling(2.1), ceiling(2.9); -- округление в большую сторону
+
+select floor(-2.9), floor(-2.1), floor(2.1), floor(2.9); -- округление в меньшую сторону
+
+
+-- substring
+
+select id, firstname from users;
+
+select id, substring(firstname, 1, 5) as firstname from users;
+
+-- concat
+
+update users set
+birthday_at = '2000-12-12';
+
+select id, concat(firstname, ' ', timestampdiff(year, birthday_at, now())) as name
+from users; 
+
+-- if
+
+select if(true, 'истина', 'ложь'), if(false, 'истина', 'ложь')
+
